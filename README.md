@@ -247,6 +247,7 @@ If you have any feedback/suggestions or need support, visit [r/NovrixApps](https
 * v1.0.2: Reupload of app due to Devvit release update error.
 * v1.0.3: Updated app to latest Devvit release.
 * v1.0.4: Updated support subreddit link. Added install/upgrade modmail triggers.
+* v1.0.5: Updated app to latest Devvit release.
 
 **📂 Beta Development History**
 
