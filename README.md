@@ -1,20 +1,20 @@
-# Comment Scout
+# Comment Daemon
 
-Comment Scout is a flexible app that helps mod teams drop custom comments ("Notices") on subreddit posts and can automatically take action if users don't interact with the notices. Whether you need a simple tool to pin a Discord link, need a temporary rule reminder, or want to implement strict time-limit based enforcement for content attribution, Comment Scout handles it all seamlessly. 
+Comment Daemon is a flexible app that helps mod teams drop custom comments ("Notices") on subreddit posts and can automatically take action if users don't interact with the notices. Whether you need a simple tool to pin a Discord link, need a temporary rule reminder, or want to implement strict time-limit based enforcement for content attribution, Comment Daemon handles it all seamlessly. 
 
-Configurable criteria within the bot settings allow options for notices to be delayed before being sent, removed after a set time, distinguished, stickied, and more. Comment Scout can then automatically filter posts, remove them, or update post flairs if users do not respond to its initial notice within a configured timeframe. Comment Scout also includes whitelist and blacklist settings, allowing configuration based on post content, presence of links, flairs, and more, giving moderators precise control over how it acts.
+Configurable criteria within the bot settings allow options for notices to be delayed before being sent, removed after a set time, distinguished, stickied, and more. Comment Daemon can then automatically filter posts, remove them, or update post flairs if users do not respond to its initial notice within a configured timeframe. Comment Daemon also includes whitelist and blacklist settings, allowing configuration based on post content, presence of links, flairs, and more, giving moderators precise control over how it acts.
 
-While Comment Scout can be used for a variety of purposes, the name speaks to its main goal of helping make content attribution easier. When a user submits a post, Comment Scout can comment on the post with a configurable message requesting a source for the content. Comment Scout will then monitor the post for a set period of time, keeping an eye out for the OP to provide a source. If a comment hasn't been made within the set period of time, the post can then be filtered or removed. Comment Scout can provide removal reasons if these are configured in the installation settings.
+While Comment Daemon can be used for a variety of purposes, the name speaks to its main goal of helping make content attribution easier. When a user submits a post, Comment Daemon can comment on the post with a configurable message requesting a source for the content. Comment Daemon will then monitor the post for a set period of time, keeping an eye out for the OP to provide a source. If a comment hasn't been made within the set period of time, the post can then be filtered or removed. Comment Daemon can provide removal reasons if these are configured in the installation settings.
 
-## ✅ What Comment Scout can do
+## ✅ What Comment Daemon can do
 
-Comment Scout operates on a fairly straightforward **Target ➔ Notice ➔ Action** workflow:
+Comment Daemon operates on a fairly straightforward **Target ➔ Notice ➔ Action** workflow:
 
 1. **​Target:** Choose exactly which posts the bot should act on or ignore using flexible Whitelist and Blacklist settings (filter by post content, flairs, links, and more).
 
 2. ​**Notice:** The bot automatically leaves a custom comment on matching posts. You can set these notices to stay permanently, or automatically delete themselves after a set time to keep comment sections clean.
 
-3.  ​**Action:** If enabled, Comment Scout starts a countdown clock. If the original poster fails to reply to the post within your set timeframe, the bot automatically executes your chosen action: 
+3.  ​**Action:** If enabled, Comment Daemon starts a countdown clock. If the original poster fails to reply to the post within your set timeframe, the bot automatically executes your chosen action: 
 
 	- Filter the post to the mod queue.
 
@@ -40,7 +40,7 @@ Comment Scout operates on a fairly straightforward **Target ➔ Notice ➔ Actio
 
 ### Devvit version update
 
-- Comment Scout has been updated to the latest Devvit release for continued stability.
+- Comment Daemon has been updated to the latest Devvit release for continued stability.
 - Updated the support subreddit link due to moving support to new subreddit.
 - Added app install/upgrade triggers to provide mod teams with usefull tips/information on install/upgrade.
 
@@ -61,22 +61,22 @@ Comment Scout operates on a fairly straightforward **Target ➔ Notice ➔ Actio
 
 # Getting Started
 
-Comment Scout is quick to set up in your subreddit. Follow these steps to get it running:
+Comment Daemon is quick to set up in your subreddit. Follow these steps to get it running:
 
 1. **Install the bot**
-	- Go to the Comment Scout developer page and click **Add to community**.
-	- Select the subreddit where you want Comment Scout active.
+	- Go to the Comment Daemon developer page and click **Add to community**.
+	- Select the subreddit where you want Comment Daemon active.
 2. **Grant permissions**
 	- Approve the requested permissions when prompted.
 3. **Configure your settings**
 	- In the settings panel, configure the settings for whitelist/blacklist, comment requirements, notice comments, and actions. See the sections below for more details on configuration.
 4. **Test the bot**
 	- Submit a test post to your subreddit.
-	- Verify that Comment Scout reacts correctly.
+	- Verify that Comment Daemon reacts correctly.
 5. **Adjust settings**
 	- If needed, use the **Configuration** section to add further configuration and adjust your settings such as notice delay, auto-removal, enabling distinguishing/sticky, and more.
 
-Once configured, Comment Scout will automatically handle new submissions according to your preferences.
+Once configured, Comment Daemon will automatically handle new submissions according to your preferences.
 
 ---
 
@@ -86,7 +86,7 @@ Currently, the bot settings consist of five sections:
 
 1. What type of filtering should the bot honor (whitelist, blacklist, both, or none)?
 2. What posts should the bot act on (whitelist), and what posts should the bot ignore (blacklist)?
-3. What type of comments should Comment Scout look for in the post and how should they be configured?
+3. What type of comments should Comment Daemon look for in the post and how should they be configured?
 4. Should a notice be sent to the OP?
 5. What should be done if the OP doesn't respond to their notice?
 
@@ -94,8 +94,8 @@ Currently, the bot settings consist of five sections:
 
 ![post_requirements]
 
-The whitelist configuration section allows you to customize what posts you want Comment Scout to act on. The
-blacklist does the opposite, allowing you to select what posts the Comment Scout should ignore. You
+The whitelist configuration section allows you to customize what posts you want Comment Daemon to act on. The
+blacklist does the opposite, allowing you to select what posts the Comment Daemon should ignore. You
 can use either one, both or none (if you want to disable the app).
 
 Optionally, you can choose to ignore approved, removed and/or filtered posts. 
@@ -121,14 +121,14 @@ Currently, you can set:
 	- Flair Text or Flair Template ID can be used
 	- Note that due to technical constraints, the user flair is checked
 	  **only** once when the post is first created. Unlike other
-	  options, Comment Scout won't know if the user flair has been changed after a
+	  options, Comment Daemon won't know if the user flair has been changed after a
 	  notice is submitted and/or before an action is taken.
 
 ## 2. Comment Requirements
 
 ![comment_requirements]
 
-If a post matches the whitelist or blacklist, Comment Scout will next look for a comment
+If a post matches the whitelist or blacklist, Comment Daemon will next look for a comment
 matching certain criteria before sending a notice or performing an action as
 described in the following sections.
 
@@ -137,32 +137,32 @@ Deleted comments are always ignored.
 
 Currently, you can set:
 
-- **A "check top-level comments" toggle if you want Comment Scout to check
+- **A "check top-level comments" toggle if you want Comment Daemon to check
   comments made as top-level-comments.**
-	- The default setting is for Comment Scout to check non-top-level comments, requiring users to
-	  respond to the Comment Scout notice rather than making a new top-level comment. 
+	- The default setting is for Comment Daemon to check non-top-level comments, requiring users to
+	  respond to the Comment Daemon notice rather than making a new top-level comment. 
 
-- **A "check non-OP comments" toggle if you want Comment Scout to check
+- **A "check non-OP comments" toggle if you want Comment Daemon to check
   comments made by users other than the OP.**
-	- An Ignore List of users can be configured, with comments made by Comment Scout
+	- An Ignore List of users can be configured, with comments made by Comment Daemon
 	  being ignored by default.
 
-- **An "accept all comments" overwrite that tells Comment Scout to accept any
+- **An "accept all comments" overwrite that tells Comment Daemon to accept any
   comment, bypassing all comment requirements (except the above)**
 
 - **A Regex pattern that the comment body must match.**
 
 - **A requirement for a link in the comment body.**
 
-If such a comment is not found, Comment Scout will send a notice comment
+If such a comment is not found, Comment Daemon will send a notice comment
 and/or take the given action.
 
 ## 3. Notice Comment
 
 ![notice]
 
-You can use this feature if you want Comment Scout to make a comment to inform users
-to take a specific action to match the requirements of your subreddit. Comment Scout
+You can use this feature if you want Comment Daemon to make a comment to inform users
+to take a specific action to match the requirements of your subreddit. Comment Daemon
 will check the post and comments both before scheduling the notice and before
 sending the comment. Notices are unlocked by default, but can be locked if desired.
 
@@ -225,7 +225,7 @@ Optionally, you can also set a different action to be executed for crossposts.
 
 ## 🧾 Source & License
 
-The source code for Comment Scout is available on [GitHub](https://github.com/ItsNovrix/Comment-Scout).
+The source code for Comment Daemon is available on [GitHub](https://github.com/ItsNovrix/Comment-Daemon).
 
 This project is licensed under the [BSD-3-Clause License](https://opensource.org/licenses/BSD-3-Clause).
 This app was developed in compliance with [Reddit's Developer Terms](https://www.redditinc.com/policies/developer-terms) and adheres to the guidelines for the Devvit platform.
@@ -240,24 +240,7 @@ If you have any feedback/suggestions or need support, visit [r/NovrixApps](https
 
 # 🚀 Changelog
 
-**🛡️ Core Releases**
+* v0.0.1: Initial app code upload
+* v0.0.2: Updated app to latest Devvit version
 
-* v1.0.0: Updated app to latest Devvit release. Updated README.
-* v1.0.1: Reupload of app due to app version update error.
-* v1.0.2: Reupload of app due to Devvit release update error.
-* v1.0.3: Updated app to latest Devvit release.
-* v1.0.4: Updated support subreddit link. Added install/upgrade modmail triggers.
-* v1.0.5: Updated app to latest Devvit release.
-
-**📂 Beta Development History**
-
-* v0.0.5: Basic functionality implemented.
-* v0.0.11: Various updates to README and cleaning up code.
-* v0.0.13: Default status of notice comments changed from locked to unlocked.
-* v0.0.18: Further README updates, testing functionality of various features not yet implemented, cleaning up code.
-* v0.0.25: Official launch of public-facing bot. Latest stable version.
-* v0.0.32: Adjusted comment level checking. Non-top-level comments now checked by default, top-level comment checking can be optionally enabled.
-* v0.0.33: Updated Devvit CLI version and README.
-* v0.0.34: Updated Devvit CLI version due to previous error.
-
-Thanks for using **Comment Scout**!
+Thanks for using **Comment Daemon**!

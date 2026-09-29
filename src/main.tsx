@@ -110,15 +110,15 @@ Devvit.addTrigger({
 
     var firstMsg = `Hello r/${subreddit.name} mods,\n\n`;
 
-    ((firstMsg += `Thanks for installing **Comment Scout**!\n\n`),
-      (firstMsg += `Comment Scout is a flexible app that helps mod teams drop custom comments ("Notices") on subreddit posts and can automatically take action if users don't interact with the notices.\n\n`));
+    ((firstMsg += `Thanks for installing **Comment Daemon**!\n\n`),
+      (firstMsg += `Comment Daemon is a flexible app that helps mod teams drop custom comments ("Notices") on subreddit posts and can automatically take action if users don't interact with the notices.\n\n`));
 
     /* QUICK START */
-    ((firstMsg += `**How Comment Scout Works**\n\n\n`),
-	  (firstMsg += `Comment Scout operates on a fairly straightforward Target ➔ Notice ➔ Action workflow:\n`),
-      (firstMsg += `- 1) **Target** — Choose which posts Comment Scout should act on or ignore using flexible Whitelist and Blacklist settings (filter by post content, flairs, links, and more).\n`),
-      (firstMsg += `- 2) **Notice** — Comment Scout will automatically leave a custom comment on matching posts. You can set these notices to stay permanently, or automatically delete themselves after a set time to keep comment sections clean.\n`),
-      (firstMsg += `- 3) **Action** — If enabled, Comment Scout starts a countdown clock. If the original poster fails to reply to the post within your set timeframe, Comment Scout automatically executes your chosen action:\n\n`));
+    ((firstMsg += `**How Comment Daemon Works**\n\n\n`),
+	  (firstMsg += `Comment Daemon operates on a fairly straightforward Target ➔ Notice ➔ Action workflow:\n`),
+      (firstMsg += `- 1) **Target** — Choose which posts Comment Daemon should act on or ignore using flexible Whitelist and Blacklist settings (filter by post content, flairs, links, and more).\n`),
+      (firstMsg += `- 2) **Notice** — Comment Daemon will automatically leave a custom comment on matching posts. You can set these notices to stay permanently, or automatically delete themselves after a set time to keep comment sections clean.\n`),
+      (firstMsg += `- 3) **Action** — If enabled, Comment Daemon starts a countdown clock. If the original poster fails to reply to the post within your set timeframe, Comment Daemon automatically executes your chosen action:\n\n`));
 
     /* COMMON USES */
     ((firstMsg += `**Common Use Cases**\n\n\n`),
@@ -128,18 +128,18 @@ Devvit.addTrigger({
       (firstMsg += `- **Mandatory Interaction Gate** — Require users to explain their post (similar to r/AmITheAsshole). If they don't respond to the prompt in time, the post goes to the mod queue.\n`));
 
 	/* CONFIGURATION */
-    ((firstMsg += `**Configuring Comment Scout**\n\n\n`),
-      (firstMsg += `Comment Scout configuration currently consists of five sections:\n`),
+    ((firstMsg += `**Configuring Comment Daemon**\n\n\n`),
+      (firstMsg += `Comment Daemon configuration currently consists of five sections:\n`),
       (firstMsg += `- What type of filtering should the bot honor (whitelist, blacklist, both, or none)?\n`),
       (firstMsg += `- What posts should the bot act on (whitelist), and what posts should the bot ignore (blacklist)?\n`),
-	  (firstMsg += `- What type of comments should Comment Scout look for in the post and how should they be configured?\n`),
+	  (firstMsg += `- What type of comments should Comment Daemon look for in the post and how should they be configured?\n`),
 	  (firstMsg += `- Should a notice be sent to the OP?\n`),
 	  (firstMsg += `- What should be done if the OP doesn't respond to their notice?\n`),
-      (firstMsg += `Whether you need a simple tool to pin a Discord link, need a temporary rule reminder, or want to implement strict time-limit based enforcement for content attribution, Comment Scout handles it all seamlessly!\n`));
+      (firstMsg += `Whether you need a simple tool to pin a Discord link, need a temporary rule reminder, or want to implement strict time-limit based enforcement for content attribution, Comment Daemon handles it all seamlessly!\n`));
 
     /* CONFIG LINKS */
     ((firstMsg += `**Configure now:** manage templates, auto-flair, and Discord settings here → `),
-      (firstMsg += `[ Comment Scout settings](https://developers.reddit.com/r/${subreddit.name}/apps/comment-scout)\n\n`));
+      (firstMsg += `[ Comment Daemon settings](https://developers.reddit.com/r/${subreddit.name}/apps/comment-scout)\n\n`));
 
     /* FOOTER */
     ((firstMsg += `[Terms & Conditions](https://www.reddit.com/r/NovrixApps/wiki/comment-scout/terms-and-conditions) | `),
@@ -149,7 +149,7 @@ Devvit.addTrigger({
     await context.reddit.sendPrivateMessageAsSubreddit({
       fromSubredditName: subreddit.name,
       to: "comment-scout",
-      subject: `Thanks for installing Comment Scout!`,
+      subject: `Thanks for installing Comment Daemon!`,
       text: firstMsg,
     });
     console.log(`Message sent to r/${event.subreddit?.name} mods.`);
@@ -176,27 +176,27 @@ Devvit.addTrigger({
 
     var firstMsg = `Hello r/${subreddit.name} mods,\n\n`;
 
-    ((firstMsg += `Thanks for updating **Comment Scout**!\n\n`),
-      (firstMsg += `Comment Scout is a flexible app that helps mod teams drop custom comments ("Notices") on subreddit posts and can automatically take action if users don't interact with the notices.\n\n`));
+    ((firstMsg += `Thanks for updating **Comment Daemon**!\n\n`),
+      (firstMsg += `Comment Daemon is a flexible app that helps mod teams drop custom comments ("Notices") on subreddit posts and can automatically take action if users don't interact with the notices.\n\n`));
 
     /* WHAT'S NEW */
     ((firstMsg += `**What's new (highlights):**\n\n\n`),
-      (firstMsg += `- **Devvit Update** — Comment Scout has been updated to the latest Devvit release for continued functionality and stability.\n`),
+      (firstMsg += `- **Devvit Update** — Comment Daemon has been updated to the latest Devvit release for continued functionality and stability.\n`),
       (firstMsg += `- **App Triggers Update** — Added app install/upgrade triggers to provide mod teams with usefull tips/information on install/upgrade (like this message!).\n`),
       (firstMsg += `- **Updated support subreddit links** — r/CommentScout has been sunset, support subreddit has been moved to [r/NovrixApps](https://www.reddit.com/r/NovrixApps).\n\n`));
 
     /* REMINDERS */
     ((firstMsg += `**Good to know / reminders:**\n\n\n`),
-      (firstMsg += `Comment Scout configuration currently consists of five sections:\n`),
+      (firstMsg += `Comment Daemon configuration currently consists of five sections:\n`),
       (firstMsg += `- What type of filtering should the bot honor (whitelist, blacklist, both, or none)?\n`),
       (firstMsg += `- What posts should the bot act on (whitelist), and what posts should the bot ignore (blacklist)?\n`),
-	  (firstMsg += `- What type of comments should Comment Scout look for in the post and how should they be configured?\n`),
+	  (firstMsg += `- What type of comments should Comment Daemon look for in the post and how should they be configured?\n`),
 	  (firstMsg += `- Should a notice be sent to the OP?\n`),
 	  (firstMsg += `- What should be done if the OP doesn't respond to their notice?\n`),
-      (firstMsg += `Whether you need a simple tool to pin a Discord link, need a temporary rule reminder, or want to implement strict time-limit based enforcement for content attribution, Comment Scout handles it all seamlessly!\n`));
+      (firstMsg += `Whether you need a simple tool to pin a Discord link, need a temporary rule reminder, or want to implement strict time-limit based enforcement for content attribution, Comment Daemon handles it all seamlessly!\n`));
 
     /* CONFIG LINKS */
-    ((firstMsg += `**Configure now:** manage templates, scheduling, notifications, and more settings here → [Comment Scout settings](https://developers.reddit.com/r/${subreddit.name}/apps/comment-scout)\n\n\n`));
+    ((firstMsg += `**Configure now:** manage templates, scheduling, notifications, and more settings here → [Comment Daemon settings](https://developers.reddit.com/r/${subreddit.name}/apps/comment-scout)\n\n\n`));
 
     /* FOOTER */
     ((firstMsg += `[Terms & Conditions](https://www.reddit.com/r/NovrixApps/wiki/comment-scout/terms-and-conditions) | `),
@@ -206,7 +206,7 @@ Devvit.addTrigger({
     await context.reddit.sendPrivateMessageAsSubreddit({
       fromSubredditName: subreddit.name,
       to: "comment-scout",
-      subject: `Comment Scout: App Update`,
+      subject: `Comment Daemon: App Update`,
       text: firstMsg,
     });
     console.log(`Message sent to r/${event.subreddit?.name} mods.`);

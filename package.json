@@ -1,17 +1,17 @@
 {
   "private": true,
-  "name": "comment-scout",
-  "version": "1.0.5",
+  "name": "comment-daemon",
+  "version": "0.0.2",
   "license": "BSD-3-Clause",
   "type": "module",
   "dependencies": {
     "ts-luxon": "5.0.7-beta.0"
   },
   "devDependencies": {
-    "@devvit/protos": "^0.14.5",
-    "@devvit/public-api": "^0.14.5",
-    "@devvit/shared-types": "^0.14.5",
-    "devvit": "^0.14.5",
+    "@devvit/protos": "0.14.6",
+    "@devvit/public-api": "0.14.6",
+    "@devvit/shared-types": "0.14.6",
+    "devvit": "0.14.6",
     "typescript": "5.8.3"
   }
 }
