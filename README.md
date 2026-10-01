@@ -26,7 +26,7 @@ Comment Daemon operates on a fairly straightforward **Target ➔ Notice ➔ Acti
 
 **​Common Use Cases**
 
-- **Sticky Announcements & Promo:** Permanently stick and distinguish a message on every new post promoting your community Discord or upcoming AMAs.
+- **Sticky Announcements & Promo:** Permanently sticky and distinguish a message on every new post promoting your community Discord or upcoming AMAs.
 
 - **Rules Reminder:** Drop a standard rule reminder on specific flairs to help reduce rule-breaking comments.
 
@@ -242,5 +242,6 @@ If you have any feedback/suggestions or need support, visit [r/NovrixApps](https
 
 * v0.0.1: Initial app code upload
 * v0.0.2: Updated app to latest Devvit version
+* v0.0.3: Migrated app from Devvit Blocks to Devvit Web
 
 Thanks for using **Comment Daemon**!

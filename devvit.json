@@ -1,0 +1,442 @@
+{
+  "$schema": "https://developers.reddit.com/schema/config-file.v1.json",
+  "name": "comment-daemon",
+  "permissions": {
+    "reddit": true
+  },
+  "server": {
+    "dir": "dist/server",
+    "entry": "index.cjs"
+  },
+  "triggers": {
+    "onAppInstall": "/internal/triggers/on-app-install",
+    "onAppUpgrade": "/internal/triggers/on-app-upgrade",
+    "onPostCreate": "/internal/triggers/on-post-create"
+  },
+  "scheduler": {
+    "tasks": {
+      "upgrade_notifier_job": {
+        "endpoint": "/internal/scheduler/upgrade-notifier-job"
+      },
+      "reminder": {
+        "endpoint": "/internal/scheduler/reminder"
+      },
+      "reminder-removal": {
+        "endpoint": "/internal/scheduler/reminder-removal"
+      },
+      "action": {
+        "endpoint": "/internal/scheduler/action"
+      }
+    }
+  },
+  "marketingAssets": {
+    "icon": "assets/icon.png"
+  },
+  "settings": {
+    "subreddit": {
+      "list-preference": {
+        "type": "select",
+        "label": "List Preference",
+        "helpText": "Choose whether to use the whitelist, blacklist, both or none (disable the app).",
+        "defaultValue": "whitelist",
+        "options": [
+          {
+            "label": "Whitelist",
+            "value": "whitelist"
+          },
+          {
+            "label": "Blacklist",
+            "value": "blacklist"
+          },
+          {
+            "label": "Both",
+            "value": "both"
+          },
+          {
+            "label": "None",
+            "value": "none"
+          }
+        ]
+      },
+      "ignore-preference": {
+        "type": "multiSelect",
+        "label": "Ignore Posts?",
+        "helpText": "Select whether to ignore posts that have been approved, removed or ones filtered by AutoModerator.",
+        "options": [
+          {
+            "label": "Approved",
+            "value": "approved"
+          },
+          {
+            "label": "Removed",
+            "value": "removed"
+          },
+          {
+            "label": "Removed by Reddit (e.g. crowd control)",
+            "value": "reddit"
+          },
+          {
+            "label": "Filtered",
+            "value": "filtered"
+          }
+        ]
+      },
+      "whitelist": {
+        "type": "group",
+        "label": "Whitelist",
+        "helpText": "Requirements for posts on which the bot will act on (all non-empty requirements given must be true).",
+        "fields": {
+          "wl-title-regex": {
+            "type": "string",
+            "label": "Title Regex",
+            "helpText": "Regex pattern for post titles to act on."
+          },
+          "wl-title-regex-case": {
+            "type": "boolean",
+            "label": "Case sensitive Title Regex?",
+            "defaultValue": false
+          },
+          "wl-body-regex": {
+            "type": "string",
+            "label": "Body Regex",
+            "helpText": "Regex pattern for post body to act on."
+          },
+          "wl-body-regex-case": {
+            "type": "boolean",
+            "label": "Case sensitive Body Regex?",
+            "defaultValue": false
+          },
+          "wl-body-link": {
+            "type": "boolean",
+            "label": "Post body contains a link?",
+            "helpText": "Enable to act on posts with a link in the post body."
+          },
+          "wl-body-length": {
+            "type": "number",
+            "label": "Minimum Post Body Length",
+            "helpText": "Specify the minimum number of characters required in the post body (the number of characters must be greater than or equal to the given number)."
+          },
+          "wl-flair-text": {
+            "type": "paragraph",
+            "label": "Flair Text",
+            "helpText": "Comma-separated flair text to whitelist (e.g. \"Discussion, Announcement\") - an exact but non-case-sensitive match is required (\"Off-topic\" and \"off-topic\" is fine)."
+          },
+          "wl-flair-ids": {
+            "type": "paragraph",
+            "label": "Flair IDs",
+            "helpText": "Comma-separated flair IDs to whitelist."
+          },
+          "wl-user-flair-text": {
+            "type": "paragraph",
+            "label": "User Flair Text",
+            "helpText": "Comma-separated user flair text to whitelist - an exact but non-case-sensitive match is required."
+          },
+          "wl-user-flair-ids": {
+            "type": "paragraph",
+            "label": "User Flair IDs",
+            "helpText": "Comma-separated user flair IDs to whitelist."
+          }
+        }
+      },
+      "blacklist": {
+        "type": "group",
+        "label": "Blacklist",
+        "helpText": "Requirements for posts posts on which the bot will NOT act on (all non-empty requirements given must be false).",
+        "fields": {
+          "bl-title-regex": {
+            "type": "string",
+            "label": "Title Regex",
+            "helpText": "Regex pattern for post titles to exclude."
+          },
+          "bl-title-regex-case": {
+            "type": "boolean",
+            "label": "Case sensitive Title Regex?",
+            "defaultValue": false
+          },
+          "bl-body-regex": {
+            "type": "string",
+            "label": "Body Regex",
+            "helpText": "Regex pattern for post bodies to exclude."
+          },
+          "bl-body-regex-case": {
+            "type": "boolean",
+            "label": "Case sensitive Body Regex?",
+            "defaultValue": false
+          },
+          "bl-body-link": {
+            "type": "boolean",
+            "label": "Post body contains a link?",
+            "helpText": "Enable to exclude posts with a link in their body."
+          },
+          "bl-body-length": {
+            "type": "number",
+            "label": "Post Body Length Limit",
+            "helpText": "Exclude posts that contain a number of characters greater than or equal to the one given"
+          },
+          "bl-flair-text": {
+            "type": "paragraph",
+            "label": "Flair Text",
+            "helpText": "Comma-separated flair text to blacklist (e.g. \"Meme, Off-topic\") - an exact, but non-case-sensitive match is required (\"Off-topic\" and \"off-topic\" is fine)."
+          },
+          "bl-flair-ids": {
+            "type": "paragraph",
+            "label": "Flair IDs",
+            "helpText": "Comma-separated flair IDs to blacklist."
+          },
+          "bl-user-flair-text": {
+            "type": "paragraph",
+            "label": "User Flair Text",
+            "helpText": "Comma-separated user flair text to blacklist - an exact but non-case-sensitive match is required."
+          },
+          "bl-user-flair-ids": {
+            "type": "paragraph",
+            "label": "User Flair IDs",
+            "helpText": "Comma-separated user flair IDs to blacklist."
+          }
+        }
+      },
+      "comment-requirements": {
+        "type": "group",
+        "label": "Comment Requirements",
+        "helpText": "Configure the requirements for the comment that should be made.",
+        "fields": {
+          "comment-ignore-preference": {
+            "type": "select",
+            "label": "Ignore Removed/Filtered Comments?",
+            "helpText": "Select whether to ignore removed comments, ones filtered by AutoModerator, or both.",
+            "defaultValue": "both",
+            "options": [
+              {
+                "label": "None",
+                "value": "none"
+              },
+              {
+                "label": "Removed",
+                "value": "removed"
+              },
+              {
+                "label": "Filtered",
+                "value": "filtered"
+              },
+              {
+                "label": "Both",
+                "value": "both"
+              }
+            ]
+          },
+          "comment-level": {
+            "type": "boolean",
+            "label": "Check top-level comments?",
+            "helpText": "Enable this to check top-level comments."
+          },
+          "comment-author": {
+            "type": "boolean",
+            "label": "Check non-OP comments?",
+            "helpText": "Enable this to check comments made by users other than the author of the post."
+          },
+          "comment-user-ignore": {
+            "type": "string",
+            "label": "Ignore List",
+            "helpText": "Comma-separated usernames to ignore (without the u/ prefix).",
+            "defaultValue": "AutoModerator"
+          },
+          "accept-any-comment": {
+            "type": "boolean",
+            "label": "Accept Any Comment?",
+            "helpText": "Enable this to bypass all comment requirements (except the above) and accept any comment."
+          },
+          "comment-body-regex": {
+            "type": "string",
+            "label": "Comment Body Regex",
+            "helpText": "Regex pattern that the comment body must match. Ignored if \"Accept Any Comment\" is enabled."
+          },
+          "comment-regex-case": {
+            "type": "boolean",
+            "label": "Case sensitive Regex?",
+            "defaultValue": false
+          },
+          "comment-body-link": {
+            "type": "boolean",
+            "label": "Require a Link in Comment Body?",
+            "helpText": "Enable to enforce the presence of a link in the comment body. Ignored if \"Accept Any Comment\" is enabled."
+          }
+        }
+      },
+      "notice-comment-settings": {
+        "type": "group",
+        "label": "Notice Comment Settings",
+        "helpText": "Settings for the notice comment to be made under posts that match the Post Requirements but lack the required comment.",
+        "fields": {
+          "reminder-enable": {
+            "type": "boolean",
+            "label": "Enable Notice?",
+            "helpText": "Enable to send a notice comment.",
+            "defaultValue": false
+          },
+          "reminder-delay": {
+            "type": "number",
+            "label": "Notice Delay (minutes)",
+            "helpText": "Time (in minutes) to wait before sending the notice. Notices with a delay of under 10 minutes will instead be sent immediately."
+          },
+          "reminder-remove-delay": {
+            "type": "number",
+            "label": "Notice Removal Delay (minutes)",
+            "helpText": "Time (in minutes) to wait before removing the notice after it has been sent. The notice won't be removed if the value is 0."
+          },
+          "reminder-message": {
+            "type": "paragraph",
+            "label": "Custom Notice Message",
+            "helpText": "The message to send as a notice - e.g., \"Please update your post or add a comment!\". Certain AutoModerator placeholders are supported; use {{random}} to insert a random value from the ones given.)."
+          },
+          "reminder-random": {
+            "type": "paragraph",
+            "label": "Random Placeholder Values",
+            "helpText": "Enter semi-colon separated values to be randomly selected for the {{random}} placeholder (e.g. \"Value1; Value2; Value3\")."
+          },
+          "reminder-options": {
+            "type": "multiSelect",
+            "label": "Notice Options",
+            "helpText": "Select moderator settings for the notice comment (comment is unlocked by default).",
+            "options": [
+              {
+                "label": "Distinguish",
+                "value": "distinguish"
+              },
+              {
+                "label": "Distinguish & Sticky",
+                "value": "sticky"
+              },
+              {
+                "label": "Lock Comment",
+                "value": "lock"
+              }
+            ]
+          }
+        }
+      },
+      "action-settings": {
+        "type": "group",
+        "label": "Action Settings",
+        "helpText": "Settings for the action to take if the post is not updated or no comment is made.",
+        "fields": {
+          "missing-link-action": {
+            "type": "select",
+            "label": "Action to Take",
+            "helpText": "What type of action to take.",
+            "defaultValue": "do_nothing",
+            "options": [
+              {
+                "label": "Do Nothing",
+                "value": "do_nothing"
+              },
+              {
+                "label": "Report Post",
+                "value": "report"
+              },
+              {
+                "label": "Change Post Flair",
+                "value": "flair"
+              },
+              {
+                "label": "Remove Post",
+                "value": "remove"
+              }
+            ]
+          },
+          "missing-link-cross-action": {
+            "type": "select",
+            "label": "Action to Take (crossposts)",
+            "helpText": "What type of action to take for crossposts.",
+            "defaultValue": "default",
+            "options": [
+              {
+                "label": "Default",
+                "value": "default"
+              },
+              {
+                "label": "Do Nothing",
+                "value": "do_nothing"
+              },
+              {
+                "label": "Report Post",
+                "value": "report"
+              },
+              {
+                "label": "Change Post Flair",
+                "value": "flair"
+              },
+              {
+                "label": "Remove Post",
+                "value": "remove"
+              }
+            ]
+          },
+          "missing-link-delay": {
+            "type": "number",
+            "label": "Action Delay (minutes)",
+            "helpText": "Time (in minutes) to wait before taking the action."
+          },
+          "report-reason": {
+            "type": "string",
+            "label": "Custom Report Reason",
+            "helpText": "What report reason to use if the report action is selected?"
+          },
+          "change-flair-id": {
+            "type": "string",
+            "label": "Flair Template ID",
+            "helpText": "If Change Post Flair is selected, what's the ID of the flair template that should be applied?"
+          },
+          "removal-reason": {
+            "type": "string",
+            "label": "Removal Reason Name",
+            "helpText": "If Remove Post is selected, what's the exact name of the removal reason template that should be used if any?"
+          },
+          "notify-user-via": {
+            "type": "select",
+            "label": "Notify User via",
+            "helpText": "If a removal reason is given, how should the user be notified?",
+            "defaultValue": "do_nothing",
+            "options": [
+              {
+                "label": "Don't Notify",
+                "value": "do_nothing"
+              },
+              {
+                "label": "Comment",
+                "value": "comment"
+              },
+              {
+                "label": "ModMail",
+                "value": "modmail"
+              }
+            ]
+          },
+          "action-notify-options": {
+            "type": "multiSelect",
+            "label": "Notify Comment Options",
+            "helpText": "If notify via comment is selected, what moderator settings should be used for the comment (comment is locked by default)?",
+            "options": [
+              {
+                "label": "Distinguish",
+                "value": "distinguish"
+              },
+              {
+                "label": "Distinguish & Sticky",
+                "value": "sticky"
+              }
+            ]
+          },
+          "modmail-archive": {
+            "type": "boolean",
+            "label": "Archive ModMail?",
+            "helpText": "If notify via ModMail is selected, should the conversation be archived?",
+            "defaultValue": false
+          }
+        }
+      }
+    }
+  },
+  "dev": {
+    "subreddit": "NovrixLabs"
+  }
+}
