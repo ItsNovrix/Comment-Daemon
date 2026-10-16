@@ -1,7 +1,7 @@
 import { reddit } from "@devvit/web/server";
 import { getActionSettings } from "../settings/getters.js";
-
 import { formatMail } from "./format_mail.js";
+import { formatMessage } from "../settings/format_message.js";
 
 export async function executeAction(
   post: any,
@@ -20,7 +20,7 @@ export async function executeAction(
   switch (action) {
     case "change_flair": {
       if (!actionSettings.changeFlairID) {
-        await post.report({
+        await reddit.report(post, {
           reason: "No flair template ID configured",
         });
         return;
@@ -36,7 +36,7 @@ export async function executeAction(
           error
         );
 
-        await post.report({
+        await reddit.report(post, {
           reason: "Invalid flair template ID",
         });
       }
@@ -50,7 +50,7 @@ export async function executeAction(
     }
 
     case "report": {
-      await post.report({
+      await reddit.report(post, {
         reason:
           actionSettings.reportReason ||
           "Comment Daemon automated report",
@@ -75,12 +75,12 @@ async function removePost(
     archiveModmail: boolean;
   }
 ) {
-  let removalReasonText = "";
+  let removalReason: any = null;
 
   if (actionSettings.removalReason) {
     try {
-      const reasons =
-        await reddit.getRemovalReasons();
+      const subreddit = await reddit.getCurrentSubreddit();
+      const reasons = await subreddit.getRemovalReasons();
 
       const reason = reasons.find(
         (item: any) =>
@@ -89,17 +89,17 @@ async function removePost(
       );
 
       if (reason) {
-        removalReasonText = reason.title;
+        removalReason = reason;
         await post.remove({
           reasonId: reason.id,
-          modNote: `automated removal by Comment Daemon`,
+          modNote: `Automated removal by Comment Daemon`,
         });
       } else {
         console.warn(
           `${post.id}: Removal reason "${actionSettings.removalReason}" not found`
         );
 
-        await post.report({
+        await reddit.report(post, {
           reason: "Invalid removal reason",
         });
 
@@ -121,11 +121,11 @@ async function removePost(
     });
   }
 
-  if (actionSettings.notifyUserVia === "comment") {
-    const message = await formatMail(
-      actionSettings.options.join("\n"),
-      post,
-      removalReasonText
+  if (actionSettings.notifyUserVia === "comment" && removalReason) {
+    const message = await formatMessage(
+      removalReason.message,
+      [],
+      post
     );
 
     const comment = await post.addComment({
@@ -147,11 +147,11 @@ async function removePost(
     return;
   }
 
-  if (actionSettings.notifyUserVia === "modmail") {
+  if (actionSettings.notifyUserVia === "modmail" && removalReason) {
     const message = await formatMail(
-      actionSettings.options.join("\n"),
+      removalReason.message,
       post,
-      removalReasonText
+      removalReason.title
     );
 
     const subreddit =

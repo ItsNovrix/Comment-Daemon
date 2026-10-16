@@ -4,8 +4,6 @@ Comment Daemon is a flexible app that helps mod teams drop custom comments ("Not
 
 Configurable criteria within the bot settings allow options for notices to be delayed before being sent, removed after a set time, distinguished, stickied, and more. Comment Daemon can then automatically filter posts, remove them, or update post flairs if users do not respond to its initial notice within a configured timeframe. Comment Daemon also includes whitelist and blacklist settings, allowing configuration based on post content, presence of links, flairs, and more, giving moderators precise control over how it acts.
 
-While Comment Daemon can be used for a variety of purposes, the name speaks to its main goal of helping make content attribution easier. When a user submits a post, Comment Daemon can comment on the post with a configurable message requesting a source for the content. Comment Daemon will then monitor the post for a set period of time, keeping an eye out for the OP to provide a source. If a comment hasn't been made within the set period of time, the post can then be filtered or removed. Comment Daemon can provide removal reasons if these are configured in the installation settings.
-
 ## ✅ What Comment Daemon can do
 
 Comment Daemon operates on a fairly straightforward **Target ➔ Notice ➔ Action** workflow:
@@ -41,8 +39,6 @@ Comment Daemon operates on a fairly straightforward **Target ➔ Notice ➔ Acti
 ### Devvit version update
 
 - Comment Daemon has been updated to the latest Devvit release for continued stability.
-- Updated the support subreddit link due to moving support to new subreddit.
-- Added app install/upgrade triggers to provide mod teams with usefull tips/information on install/upgrade.
 
 # What's To Come 
 
@@ -238,10 +234,21 @@ If you have any feedback/suggestions or need support, visit [r/NovrixApps](https
 
 ---
 
+# 📋 App Development
+
+Track upcoming features, planned updates, and known issues for all my Devvit apps on the [Novrix Labs Trello Board](https://trello.com/b/1TdocvRg/novrix-labs).
+
+---
+
 # 🚀 Changelog
 
-* v0.0.1: Initial app code upload
-* v0.0.2: Updated app to latest Devvit version
-* v0.0.3: Migrated app from Devvit Blocks to Devvit Web
+* v0.0.1: Initial app code upload.
+* v0.0.2: Updated app to latest Devvit version.
+* v0.0.3: Migrated app from Devvit Blocks to Devvit Web.
+* v0.0.4: Resolved issue with app not removing posts when user doesn't respond to bot.
+* v0.0.5: Resolved issue with app not reporting posts properly.
+* v0.0.6: Resolved issue with content removal messages.
+* v0.0.7: Updated modmail message formatting.
+* v0.0.8: Updated app upgrade notifier.
 
 Thanks for using **Comment Daemon**!

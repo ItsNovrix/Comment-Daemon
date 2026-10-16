@@ -25,17 +25,13 @@ export async function getPostParams(
 
 export async function fetchAllComments(post: any) {
   const comments = [];
-  let cursor: string | undefined;
 
-  do {
-    const result = await post.getComments({
-      limit: 100,
-      cursor,
-    });
-
-    comments.push(...result.comments);
-    cursor = result.nextCursor;
-  } while (cursor);
+  for await (const comment of reddit.getComments({
+    postId: post.id,
+    limit: 100,
+  })) {
+    comments.push(comment);
+  }
 
   return comments;
 }
