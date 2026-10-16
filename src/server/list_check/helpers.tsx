@@ -24,14 +24,29 @@ export async function getPostParams(
 }
 
 export async function fetchAllComments(post: any) {
-  const comments = [];
+  const allComments: any[] = [];
+
+  async function extractReplies(comment: any) {
+    allComments.push(comment);
+    
+    if (comment.replies && typeof comment.replies.all === "function") {
+      const replies = await comment.replies.all();
+      for (const reply of replies) {
+        await extractReplies(reply);
+      }
+    } else if (Array.isArray(comment.replies)) {
+      for (const reply of comment.replies) {
+        await extractReplies(reply);
+      }
+    }
+  }
 
   for await (const comment of reddit.getComments({
     postId: post.id,
     limit: 100,
   })) {
-    comments.push(comment);
+    await extractReplies(comment);
   }
 
-  return comments;
+  return allComments;
 }

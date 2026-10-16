@@ -1,12 +1,5 @@
 import { reddit } from "@devvit/web/server";
 
-/**
- * Replaces placeholders in a given message with their corresponding values
- * and appends a footer to the end of it.
- *
- * Currently supports {{random}} for given random values and
- * AutoModerator-style placeholders.
- */
 export async function formatMessage(
   message: string,
   randomValues: string[],
@@ -18,7 +11,6 @@ export async function formatMessage(
     post.subredditName +
     ") if you have any questions or concerns.*";
 
-  // Handle {{random}} placeholder
   if (message.includes("{{random}}") && randomValues.length > 0) {
     const randomValue =
       randomValues[Math.floor(Math.random() * randomValues.length)];
@@ -26,17 +18,15 @@ export async function formatMessage(
     message = message.replace(/\{\{random\}\}/g, randomValue);
   }
 
-  // Handle AutoModerator placeholders
   const subreddit = await reddit.getCurrentSubreddit();
   const author = post.authorName;
 
   let authorFlairText = "";
   let authorFlairCssClass = "";
-  let authorFlairTemplateId = "";
 
   if (author) {
     try {
-      const user = await reddit.getUserByName(author);
+      const user = await reddit.getUserByUsername(author);
 
       if (user) {
         const flair = await user.getUserFlairBySubreddit(
@@ -46,7 +36,6 @@ export async function formatMessage(
         if (flair) {
           authorFlairText = flair.flairText || "";
           authorFlairCssClass = flair.flairCssClass || "";
-          authorFlairTemplateId = flair.flairTemplateId || "";
         }
       }
     } catch (error) {
@@ -82,7 +71,7 @@ export async function formatMessage(
     )
     .replace(
       /\{\{author_flair_template_id\}\}/g,
-      authorFlairTemplateId || ""
+      ""
     )
     .replace(/\{\{body\}\}/g, postBody || "")
     .replace(/\{\{permalink\}\}/g, permalink || "")
@@ -124,9 +113,6 @@ export async function formatMessage(
   return message + footer;
 }
 
-/**
- * Get the domain name of a given URL.
- */
 function getDomainName(url: string) {
   try {
     const urlObject = new URL(url);

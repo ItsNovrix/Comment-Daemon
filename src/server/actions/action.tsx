@@ -112,12 +112,12 @@ async function removePost(
       );
 
       await post.remove({
-        modNote: `automated removal by Comment Daemon`,
+        modNote: `Automated removal by Comment Daemon`,
       });
     }
   } else {
     await post.remove({
-      modNote: `automated removal by Comment Daemon`,
+      modNote: `Automated removal by Comment Daemon`,
     });
   }
 
@@ -132,12 +132,11 @@ async function removePost(
       text: message,
     });
 
-    if (actionSettings.options.includes("distinguish")) {
-      await comment.distinguish();
-    }
+    const shouldDistinguish = actionSettings.options.includes("distinguish");
+    const shouldSticky = actionSettings.options.includes("sticky");
 
-    if (actionSettings.options.includes("sticky")) {
-      await comment.sticky();
+    if (shouldDistinguish || shouldSticky) {
+      await comment.distinguish(shouldSticky);
     }
 
     if (actionSettings.options.includes("lock")) {
@@ -154,8 +153,7 @@ async function removePost(
       removalReason.title
     );
 
-    const subreddit =
-      await reddit.getCurrentSubreddit();
+    const subreddit = await reddit.getCurrentSubreddit();
 
     await reddit.modMail.createModInboxConversation({
       subredditId: subreddit.id,

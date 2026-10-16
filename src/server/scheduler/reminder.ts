@@ -29,7 +29,6 @@ export const handleReminder = async (c: Context) => {
 
   const post = await reddit.getPostById(postId);
 
-  // Re-check the post before sending the reminder.
   const postMatches = await checkPost(
     post,
     userFlairText || "",
@@ -44,7 +43,6 @@ export const handleReminder = async (c: Context) => {
     return c.json({ success: true });
   }
 
-  // Re-check comment requirements.
   const commentSettings = await getCommentSettings();
 
   const commentIgnorePreference =
@@ -64,7 +62,6 @@ export const handleReminder = async (c: Context) => {
     return c.json({ success: true });
   }
 
-  // Add the reminder comment.
   const comment = await post.addComment({
     text: message,
   });
@@ -73,19 +70,17 @@ export const handleReminder = async (c: Context) => {
     ? rawOptions
     : [];
 
-  if (options.includes("distinguish")) {
-    await comment.distinguish();
-  }
+  const shouldDistinguish = options.includes("distinguish");
+  const shouldSticky = options.includes("sticky");
 
-  if (options.includes("sticky")) {
-    await comment.sticky();
+  if (shouldDistinguish || shouldSticky) {
+    await comment.distinguish(shouldSticky);
   }
 
   if (options.includes("lock")) {
     await comment.lock();
   }
 
-  // Schedule removal if configured.
   if (removeDelay && removeDelay > 0) {
     await scheduler.runJob({
       name: "reminder-removal",

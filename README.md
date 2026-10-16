@@ -250,5 +250,8 @@ Track upcoming features, planned updates, and known issues for all my Devvit app
 * v0.0.6: Resolved issue with content removal messages.
 * v0.0.7: Updated modmail message formatting.
 * v0.0.8: Updated app upgrade notifier.
+* v0.0.9: Added log to comment replies to investigate issue with comment pass failures.
+* v0.0.10: Resolved issue with app not getting usernames properly and issue with user/post flairs.
+* v0.0.11: Resolved issue with app not approving properly formatted comments.
 
 Thanks for using **Comment Daemon**!

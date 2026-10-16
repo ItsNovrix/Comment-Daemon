@@ -13,13 +13,6 @@ import {
   getPostParams,
 } from "./helpers.js";
 
-/**
- * Given a set of post parameters and black/whitelist settings,
- * returns whether the given post matches the given criteria.
- *
- * - whitelist: all criteria must be true.
- * - blacklist: all criteria must be false.
- */
 export function checkPostParams(
   postParams: {
     id: string;
@@ -118,12 +111,6 @@ export function checkPostParams(
       );
 }
 
-/**
- * Given a post, compare it against the ignore preference and
- * black/whitelist settings.
- *
- * Returns true if the post should be processed further.
- */
 export async function checkPost(
   post: any,
   userFlairText: string,
@@ -148,17 +135,17 @@ export async function checkPost(
         removedByCategory === "moderator") &&
       !ignorePreference.includes("removed")
     ) {
-      // Continue processing.
+
     } else if (
       removedByCategory === "reddit" &&
       !ignorePreference.includes("reddit")
     ) {
-      // Continue processing.
+
     } else if (
       removedByCategory === "automod_filtered" &&
       !ignorePreference.includes("filtered")
     ) {
-      // Continue processing.
+
     } else {
       console.info(
         `${post.id}: Ignoring (post is removed/deleted: ${removedByCategory})`
@@ -209,10 +196,6 @@ export async function checkPost(
   return false;
 }
 
-/**
- * Given a post and comment requirements, check if a matching
- * comment already exists.
- */
 export async function checkComments(
   post: any,
   settings: {
@@ -240,50 +223,49 @@ export async function checkComments(
   const comments = await fetchAllComments(post);
 
   for (const comment of comments) {
-    const isRemoved =
-      comment.isRemoved() || comment.isSpam();
-
+    const isRemoved = comment.isRemoved() || comment.isSpam();
     const bannedAt = comment.bannedAtUtc;
 
     if (ignorePreference !== "none") {
       if (
         isRemoved &&
-        (ignorePreference === "both" ||
-          ignorePreference === "removed")
+        (ignorePreference === "both" || ignorePreference === "removed")
       ) {
-        console.info(
-          `${comment.id}: Ignoring (comment removed)`
-        );
         continue;
       }
 
       if (
         bannedAt &&
-        (ignorePreference === "both" ||
-          ignorePreference === "filtered")
+        (ignorePreference === "both" || ignorePreference === "filtered")
       ) {
-        console.info(
-          `${comment.id}: Ignoring (comment filtered)`
-        );
         continue;
       }
     }
 
-    const commentAuthorName =
-      comment.authorName || "";
-
-    const commentAuthorID =
-      comment.authorId || "";
+    const commentAuthorName = comment.authorName || "";
+    const commentAuthorID = comment.authorId || "";
 
     const isAppComment =
-      appUsername.length > 0 &&
-      commentAuthorName.toLowerCase() === appUsername;
+      appUsername.length > 0 && commentAuthorName.toLowerCase() === appUsername;
+
+    if (isAppComment) continue;
+
+    console.log(
+      `${comment.id}: Comment scanned`,
+      {
+        author: commentAuthorName,
+        parentId: comment.parentId,
+        isAppComment: isAppComment,
+        isIgnoredUser: userIgnoreList.includes(commentAuthorName.toLowerCase()),
+        isOP: commentAuthorID === postAuthorID,
+        checkNonOP: checkNonOP,
+        checkTopLevel: checkTopLevel,
+        isTopLevel: comment.parentId.startsWith("t3_")
+      }
+    );
 
     if (
-      !isAppComment &&
-      !userIgnoreList.includes(
-        commentAuthorName.toLowerCase()
-      ) &&
+      !userIgnoreList.includes(commentAuthorName.toLowerCase()) &&
       (checkNonOP || commentAuthorID === postAuthorID) &&
       (checkTopLevel
         ? comment.parentId.startsWith("t3_")
@@ -297,7 +279,10 @@ export async function checkComments(
         ? containsLink(comment.body)
         : true;
 
+      console.log(`${comment.id}: Passed gatekeeper checks. RegexPass: ${regexPass}, BodyLinkPass: ${bodyLinkPass}`);
+
       if (regexPass && bodyLinkPass) {
+        console.log(`${comment.id}: Valid reply found! Returning true.`);
         return true;
       }
     }

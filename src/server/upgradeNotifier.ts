@@ -10,7 +10,7 @@ interface AppUpdate {
 
 const UPDATE_SUBREDDIT = "novrixapps";
 const UPDATE_WIKI_PAGE = "upgrade-notifier";
-const CURRENT_APP_VERSION = "0.0.8";
+const CURRENT_APP_VERSION = "0.0.11";
 
 export async function getNewVersionInfo(appSlug: string): Promise<AppUpdate | undefined> {
     let wikiPage;
@@ -48,7 +48,7 @@ export async function getNewVersionInfo(appSlug: string): Promise<AppUpdate | un
 }
 
 export async function checkForUpdates() {
-    console.log("Update Checker: Waking up to check for updates...");
+    console.log("Update Checker: Checking for updates...");
     try {
         const notificationsEnabled = await settings.get('enable_update_notifications');
         if (notificationsEnabled === false) {

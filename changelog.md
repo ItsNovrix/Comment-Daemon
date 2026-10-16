@@ -2,6 +2,23 @@
 
 ---
 
+## v0.0.11
+
+* Resolved issue with app not approving properly formatted comments.
+
+---
+
+## v0.0.10
+
+* Resolved issue with app not getting usernames properly.
+* Resolved issue with user and post flairs.
+
+---
+
+## v0.0.9
+
+* Added log to comment replies to investigate issue with comment pass failures.
+
 ## v0.0.8
 
 * Updated app upgrade notifier.

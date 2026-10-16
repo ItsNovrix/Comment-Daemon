@@ -15,12 +15,11 @@ export async function sendReminder(
     ? rawOptions
     : [];
 
-  if (options.includes("distinguish")) {
-    await comment.distinguish();
-  }
+  const shouldDistinguish = options.includes("distinguish");
+  const shouldSticky = options.includes("sticky");
 
-  if (options.includes("sticky")) {
-    await comment.sticky();
+  if (shouldDistinguish || shouldSticky) {
+    await comment.distinguish(shouldSticky);
   }
 
   if (options.includes("lock")) {
