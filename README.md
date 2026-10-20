@@ -34,17 +34,6 @@ Comment Daemon operates on a fairly straightforward **Target ➔ Notice ➔ Acti
 
 ---
 
-# What's New?
-
-### Devvit version update
-
-- Comment Daemon has been updated to the latest Devvit release for continued stability.
-
-# What's To Come 
-
-- Implement functionality to optionally sticky notices and removal reasons separate from 'Distinguish & Sticky' option
-- Implement functionality to optionally unlock removal comments by default
-
 [post_requirements]: https://i.imgur.com/iMZPgWd.png
 
 [comment_requirements]: https://i.imgur.com/POEQung.png
@@ -53,9 +42,7 @@ Comment Daemon operates on a fairly straightforward **Target ➔ Notice ➔ Acti
 
 [action]: https://i.imgur.com/6Voa0Zy.png
 
----
-
-# Getting Started
+## Getting Started
 
 Comment Daemon is quick to set up in your subreddit. Follow these steps to get it running:
 
@@ -76,7 +63,7 @@ Once configured, Comment Daemon will automatically handle new submissions accord
 
 ---
 
-# Configuration
+## Configuration
 
 Currently, the bot settings consist of five sections:
 
@@ -86,7 +73,7 @@ Currently, the bot settings consist of five sections:
 4. Should a notice be sent to the OP?
 5. What should be done if the OP doesn't respond to their notice?
 
-## 1. Post Requirements (White and Black List)
+### 1. Post Requirements (White and Black List)
 
 ![post_requirements]
 
@@ -120,7 +107,7 @@ Currently, you can set:
 	  options, Comment Daemon won't know if the user flair has been changed after a
 	  notice is submitted and/or before an action is taken.
 
-## 2. Comment Requirements
+### 2. Comment Requirements
 
 ![comment_requirements]
 
@@ -153,7 +140,7 @@ Currently, you can set:
 If such a comment is not found, Comment Daemon will send a notice comment
 and/or take the given action.
 
-## 3. Notice Comment
+### 3. Notice Comment
 
 ![notice]
 
@@ -185,7 +172,7 @@ Currently, you can set:
 
 - **Whether the notice should be distinguished, stickied and distinguished, or locked.**
 
-## 4. Action on Missing Link/Comment
+### 4. Action on Missing Link/Comment
 
 ![action]
 
@@ -228,13 +215,13 @@ This app was developed in compliance with [Reddit's Developer Terms](https://www
 
 ---
 
-# 🆘 Feedback & Support
+## 🆘 Feedback & Support
 
 If you have any feedback/suggestions or need support, visit [r/NovrixApps](https://www.reddit.com/r/NovrixApps).
 
 ---
 
-# 📋 App Development
+## 📋 App Development
 
 Track upcoming features, planned updates, and known issues for all my Devvit apps on the [Novrix Labs Trello Board](https://trello.com/b/1TdocvRg/novrix-labs).
 
@@ -253,5 +240,6 @@ Track upcoming features, planned updates, and known issues for all my Devvit app
 * v0.0.9: Added log to comment replies to investigate issue with comment pass failures.
 * v0.0.10: Resolved issue with app not getting usernames properly and issue with user/post flairs.
 * v0.0.11: Resolved issue with app not approving properly formatted comments.
+* v0.0.12: Updated app to latest Devvit version.
 
 Thanks for using **Comment Daemon**!

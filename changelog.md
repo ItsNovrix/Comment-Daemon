@@ -2,6 +2,12 @@
 
 ---
 
+## v0.0.12
+
+* Updated app to latest Devvit version.
+
+---
+
 ## v0.0.11
 
 * Resolved issue with app not approving properly formatted comments.
