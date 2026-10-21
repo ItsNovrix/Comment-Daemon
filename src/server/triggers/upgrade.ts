@@ -16,6 +16,7 @@ export const handleAppUpgrade = async (c: Context) => {
 
     /* WHAT'S NEW */
     firstMsg += `**What's new (highlights):**\n\n\n`;
+    firstMsg += `- **Upgrade Notifier Update** — Updated the upgrade notifier to reformat upgrade message and resolve app name errors.\n`;
     firstMsg += `- **Devvit Version Update** — Comment Daemon has been updated to the latest Devvit release (0.15.0).\n`;
     firstMsg += `- **App Upgrade Notifier** — Comment Daemon now has an app upgrade notifier to alert mod teams when an upgrade is available for Comment Daemon (this can be toggled off in the app settings).\n\n`;
 

@@ -1,5 +1,9 @@
 # 🚀 Changelog for Comment Daemon
 
+## v0.0.13
+
+* Updated the upgrade notifier to reformat upgrade message and resolve app name errors.
+
 ---
 
 ## v0.0.12

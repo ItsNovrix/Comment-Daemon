@@ -229,17 +229,12 @@ Track upcoming features, planned updates, and known issues for all my Devvit app
 
 # 🚀 Changelog
 
-* v0.0.1: Initial app code upload.
-* v0.0.2: Updated app to latest Devvit version.
-* v0.0.3: Migrated app from Devvit Blocks to Devvit Web.
-* v0.0.4: Resolved issue with app not removing posts when user doesn't respond to bot.
-* v0.0.5: Resolved issue with app not reporting posts properly.
-* v0.0.6: Resolved issue with content removal messages.
-* v0.0.7: Updated modmail message formatting.
-* v0.0.8: Updated app upgrade notifier.
-* v0.0.9: Added log to comment replies to investigate issue with comment pass failures.
-* v0.0.10: Resolved issue with app not getting usernames properly and issue with user/post flairs.
-* v0.0.11: Resolved issue with app not approving properly formatted comments.
-* v0.0.12: Updated app to latest Devvit version.
+**Latest Version:** v0.0.13
+
+* Updated the upgrade notifier to reformat upgrade message and resolve app name errors.
+
+For the full changelog, please visit the Weathercast [GitHub](https://github.com/ItsNovrix/Comment-Daemon).
+
+---
 
 Thanks for using **Comment Daemon**!

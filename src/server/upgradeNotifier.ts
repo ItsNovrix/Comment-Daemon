@@ -10,7 +10,7 @@ interface AppUpdate {
 
 const UPDATE_SUBREDDIT = "novrixapps";
 const UPDATE_WIKI_PAGE = "upgrade-notifier";
-const CURRENT_APP_VERSION = "0.0.12";
+const CURRENT_APP_VERSION = "0.0.13";
 
 export async function getNewVersionInfo(appSlug: string): Promise<AppUpdate | undefined> {
     let wikiPage;
@@ -57,7 +57,7 @@ export async function checkForUpdates() {
         }
         const subreddit = await reddit.getCurrentSubreddit();
         const appUser = await reddit.getAppUser();
-        const appSlug = appUser?.username ?? "relay-app";
+        const appSlug = appUser?.username ?? "comment-daemon";
 
         const update = await getNewVersionInfo(appSlug);
         if (!update) return;
@@ -72,21 +72,21 @@ export async function checkForUpdates() {
         await redis.set(redisKey, update.version);
 
         const message: json2md.DataObject[] = [
-            { p: `A new version of **${appSlug}** (v${update.version}) is available to install!` }
+            { p: `A new version of **Comment Daemon** is available to install!` }
         ];
         
         if (update.whatsNewBullets && update.whatsNewBullets.length > 0) {
-            message.push({ p: "**Here's what's new:**" });
+            message.push({ p: `**Here's what's new in v${update.version}:**` });
             message.push({ ul: update.whatsNewBullets });
         }
 
         message.push({ 
-            p: `To install this update, visit the **[${appSlug} Configuration Page](https://developers.reddit.com/r/${subreddit.name}/apps/${appSlug})** for r/${subreddit.name}.` 
+            p: `To install this update, or to disable these notifications, visit the **[Comment Daemon configuration page](https://developers.reddit.com/r/${subreddit.name}/apps/comment-daemon)** for r/${subreddit.name}.` 
         });
 
         await reddit.modMail.createModNotification({
             subredditId: subreddit.id,
-            subject: `New ${appSlug} Update Available: v${update.version}`,
+            subject: `Comment Daemon Update Available: v${update.version}`,
             bodyMarkdown: json2md(message),
         });
 
