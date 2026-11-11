@@ -229,11 +229,11 @@ Track upcoming features, planned updates, and known issues for all my Devvit app
 
 # 🚀 Changelog
 
-**Latest Version:** v0.0.14
+**Latest Version:** v0.0.15
 
-* Resolved typo in upgrade notifier message.
+* Updated app to latest Devvit release (0.15.3).
 
-For the full changelog, please visit the Weathercast [GitHub](https://github.com/ItsNovrix/Comment-Daemon).
+For the full changelog, please visit the Comment Daemon [GitHub](https://github.com/ItsNovrix/Comment-Daemon).
 
 ---
 

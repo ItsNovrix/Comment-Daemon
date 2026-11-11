@@ -1,5 +1,11 @@
 # 🚀 Changelog for Comment Daemon
 
+## v0.0.15
+
+* Updated app to latest Devvit release (0.15.3).
+
+---
+
 ## v0.0.14
 
 * Resolved typo in upgrade notifier message.
